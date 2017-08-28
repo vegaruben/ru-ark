@@ -1,3 +1,25 @@
-.test {
-  color: #dddddd;
+.navbar {
+  min-height: 96px;
+  .navbar-brand {
+    margin-right: 60px;
+  }
+  .navbar-nav {
+    .nav-link, .nav-link:focus {
+      font-weight: 600;
+      color: #000000;
+      font-size: 18px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 2px;
+      margin-right: 2px;
+    }
+    .nav-link:hover {
+      color: #000000;
+      border-bottom: 5px solid #7a3acf;
+    }
+    .active>.nav-link {
+      border-bottom: 5px solid #482e8f;
+      color: #000000;
+    }
+  }
 }
