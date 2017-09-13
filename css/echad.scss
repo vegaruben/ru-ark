@@ -53,7 +53,7 @@
   background: linear-gradient(to bottom, #9169ef 0%,#7f5de9 59%,#643ce8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9169ef', endColorstr='#643ce8',GradientType=0 ); /* IE6-9 */
 }
-  .spot1-bg {
+  .tier1-bg {
   background: url(../img/bg-glassblowing.jpg) center;
   padding: 20px 0;
   border-bottom: 9px solid #7b69a7;
@@ -62,14 +62,106 @@
     display: flex;
   }
 }
-.spot1-txt {
+.tier1-txt {
   font-size: 38px;
   text-shadow: 3px 3px 7px rgba(0, 0, 0, 1);
   font-weight: bold;
   color: #ffffff;
 }
+.tier2 {
+  div:nth-child(1) {
+    background: #eeeef0;
+ }
+  div:nth-child(2) {
+    background: #dfe0e2;
+  }
+  div:nth-child(3) {
+    background: #d2d3d5;
+  }
+  div:hover {
+    background:
+            linear-gradient(
+                            to left,
+                            rgba(140,78,254,1) 0%,
+                            rgba(167,67,185,1) 50%,
+                            rgba(190,0,125,1) 100%
+            )
+            left
+            bottom
+            #e3d1fb
+            no-repeat;
+    background-size:100% 10px ;
+
+  }
+  .col-md {
+    padding: 30px;
+    min-height: 290px;
+  }
+}
+.tier3 {
+  > div {
+    padding: 0;
+    div {
+      padding: 20px;
+      min-height: 172px;
+    }
+    img{
+      vertical-align:bottom;
+      border:0;
+    }
+  }
+  > div:hover .overlay {
+    opacity: 1;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(41,0,111,0.6);
+  }
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+  }
+}
+.tier3-type1 {
+  > div {
+    background: #a5a5a5;
+  }
+
+}
+.tier3-type2 {
+  > div {
+    background: #c7c2c2;
+  }
+}
+footer {
+  padding: 60px 20px 20px;
+  li {
+    display: inline;
+  }
+  a {
+    font-weight: 600;
+    color: #000000;
+    font-size: 16px;
+    padding: 0 15px;
+  }
+}
+
 @media (min-width: 1200px) {
   .container {
     max-width: 1366px;
+  }
+}
+@media (max-width: 575px) {
+  .tier3 {
+    display: none;
   }
 }
