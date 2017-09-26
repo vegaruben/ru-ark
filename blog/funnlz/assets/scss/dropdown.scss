@@ -1,0 +1,13 @@
+.login-box{
+	display:none;
+	
+	position: absolute;
+    left: 600px;
+    float: right;
+	height: 277px;
+    width: 351px;
+    
+	&.show{
+		display:block;
+	}
+}
