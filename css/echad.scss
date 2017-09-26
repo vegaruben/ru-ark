@@ -243,6 +243,99 @@ footer {
     }
   }
 }
+#navbarSupportedContent{
+	position:relative;
+}
+#loginFormContainer
+{
+	position:absolute;	
+    right: 0;
+    float: right;
+    top: 68px;
+    z-index: 1;
+}
+#loginForm
+{	
+	width:351px;
+	background-color:#dedede;
+	display:none;
+	
+	fieldset
+	{
+		padding:30px;
+		border:none;
+	}      
+	label
+	{
+		display:block;
+		color:#000000;
+	}      
+	input[type=text],
+	input[type=password]
+	{
+		display:block;
+		border:solid 1px #4d3a24;
+		width:100%;
+		margin-bottom:10px;
+		height:24px;
+	}  	
+	input[type=submit]
+	{
+		display:block;
+		margin-top:10px;
+		background-color:#4d3a24;
+		border:solid 1px #23150c;
+		color:#fecd28;
+		padding:5px;
+	}    
+	
+}
+
+#signupFormContainer
+{
+	position:absolute;	
+    right: 0;
+    float: right;
+    top: 68px;
+    z-index: 1;
+}
+#signupForm
+{	
+	width:351px;
+	background-color:#f3f3f3;
+	display:none;
+	
+	fieldset
+	{
+		padding:30px;
+		border:none;
+	}      
+	label
+	{
+		display:block;
+		color:#000000;
+	}      
+	input[type=text],
+	input[type=password]
+	{
+		display:block;
+		border:solid 1px #4d3a24;
+		width:100%;
+		margin-bottom:10px;
+		height:24px;
+	}  	
+	input[type=submit]
+	{
+		display:block;
+		margin-top:10px;
+		background-color:#4d3a24;
+		border:solid 1px #23150c;
+		color:#fecd28;
+		padding:5px;
+	}    
+	
+}
+
 
 @media (min-width: 1200px) {
   .container {
