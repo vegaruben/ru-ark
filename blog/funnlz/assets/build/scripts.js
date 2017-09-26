@@ -13,10 +13,10 @@
 				$("#loginForm").slideUp("slow");
 			}
 		});
-		$('#loginSubmit').click(function(){
-			setTimeout(function(){				
-				$("#loginForm").slideUp("slow");
-			}, 2000);
+		$('#loginSubmit').click(function(e){
+			e.preventDefault();			
+			$("#loginForm").slideUp("slow");
+			
 		});
 		
 		$("#signup").click(function(e){
@@ -29,10 +29,10 @@
 				$("#signupForm").slideUp("slow");
 			}
 		});
-		$('#signupSubmit').click(function(){
-			setTimeout(function(){				
-				$("#signupForm").slideUp("slow");
-			}, 2000);
+		$('#signupSubmit').click(function(e){
+			e.preventDefault();			
+			$("#signupForm").slideUp("slow");
+			
 		});
 	});
 

@@ -51,7 +51,7 @@
 									<input id="Email" type="text" />
 									<label for="password">Password *</label>
 									<input id="password" type="password" />								
-									<input id="sendMail" type="submit" name="submit" onclick="closeForm()" />								
+									<input id="signupSubmit" type="submit" name="submit" />								
 							   </fieldset>
 						   </form>
 						</div>						
