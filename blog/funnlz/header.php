@@ -13,15 +13,7 @@
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 
 		<?php wp_head(); ?>
-		<script>
-        // conditionizr.com
-        // configure environment tests
-        conditionizr.config({
-            assets: '<?php echo get_template_directory_uri(); ?>',
-            tests: {}
-        });
-        </script>
-
+		
 	</head>
 	<body <?php body_class(); ?>>
 		<div class="container">
@@ -34,12 +26,39 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<?php html5blank_nav();?>
 					
-					<a class="login"><i class="fa fa-lg fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a><button class="btn btn-primary my-2 my-sm-0" role="button" type="button"><i class="fa fa-lg fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;SIGN UP</button>
+					<a class="login" id="login"><i class="fa fa-lg fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a><button class="btn btn-primary my-2 my-sm-0" role="button" type="button" id="signup"><i class="fa fa-lg fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;SIGN UP</button>
+					
+					<div id="loginFormContainer">
+						<div id="loginForm">
+							<form action="" method="post">
+								<fieldset>					
+									<p>Login Form</p>			
+									<label for="Email">Email address *</label>
+									<input id="Email" type="text" />
+									<label for="password">Password *</label>
+									<input id="password" type="password" />								
+									<input id="loginSubmit" type="submit" name="submit"  />								
+							   </fieldset>
+						   </form>
+						</div>						
+					</div>
+					<div id="signupFormContainer">
+						<div id="signupForm">
+							<form action="" method="post">
+								<fieldset>		
+									<p>Signup Form</p>						
+									<label for="Email">Email address *</label>
+									<input id="Email" type="text" />
+									<label for="password">Password *</label>
+									<input id="password" type="password" />								
+									<input id="sendMail" type="submit" name="submit" onclick="closeForm()" />								
+							   </fieldset>
+						   </form>
+						</div>						
+					</div>
 				</div>
 			</nav>
-			<div class="login-box">
-				test
-			</div>
+			
 		</div>
 		
 				
