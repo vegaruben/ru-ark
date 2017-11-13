@@ -1,0 +1,180 @@
+// Add custom font
+
+
+// Import bootstrap and fontawesome
+@import "bootstrap";
+@import "font-awesome";
+
+.navbar {
+	
+	
+	.navbar-brand {
+		margin: 0 0px 0 0px;
+	}
+	.navbar-nav {
+		list-style-type: none;
+		padding:20px 0;
+		
+		.nav-link, .nav-link:focus {
+			font-weight: 600;
+			color: #000000;
+			font-size: 18px;
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-bottom: 2px;
+			margin-right: 2px;
+			border-bottom: 5px solid #ffffff;
+		}
+		.nav-link:hover {
+			color: #000000;
+			border-bottom: 5px solid #7a3acf;
+			text-decoration:none;
+		}
+		.active>.nav-link {
+			border-bottom: 5px solid #482e8f;
+			color: #000000;
+		}
+		.nav-item {
+			margin: 0 10px;
+		}
+	}
+	.login-bottons{
+		padding:20px 0;
+		
+		a.login {
+			color: #452d85;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		a.login:hover {
+			color: #8167c5;
+		}
+		.btn {
+			min-width: 200px;
+			font-weight: bold;
+			margin: 0 0 0 20px;
+			.fa {
+				font-weight: normal;
+			}
+		}
+		.btn:focus, .btn-primary:focus {
+			outline: 0;
+			box-shadow: none;
+		}
+	}
+	
+}
+.btn-primary, .btn-primary:hover {
+	color: #fff;
+	background: #a98af1;
+	/* Old browsers */
+	background: -moz-linear-gradient(top, #a98af1 0%, #7f5de9 86%, #7f5de9 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #a98af1 0%, #7f5de9 86%, #7f5de9 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #a98af1 0%, #7f5de9 86%, #7f5de9 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a98af1', endColorstr='#7f5de9', GradientType=0);
+	/* IE6-9 */
+	border: none;
+}
+.btn-primary:hover {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#9169ef+0,7f5de9+59,643ce8+100 */
+	background: #9169ef;
+	/* Old browsers */
+	background: -moz-linear-gradient(top, #9169ef 0%, #7f5de9 59%, #643ce8 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #9169ef 0%, #7f5de9 59%, #643ce8 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #9169ef 0%, #7f5de9 59%, #643ce8 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9169ef', endColorstr='#643ce8', GradientType=0);
+	/* IE6-9 */
+}
+.btn-secondary, .btn-secondary:hover {
+	color: #fff;
+	background: #5201b5;
+	border: none;
+	padding: 10px 30px;
+	font-size: 14px;
+	font-weight: 400;
+}
+.btn-secondary:hover {
+	background: #7528d4;
+}
+.main-content {
+	padding: 30px 0;
+}
+.imgPreview{
+	max-width: 200px;
+    height: auto;
+    padding: 4px;
+    border: thin solid;
+    margin: 15px 0;
+}
+footer {
+	padding: 60px 20px 20px;
+	ul {
+		margin: 14px 0 20px 0;
+		padding: 0;
+	}
+	li {
+		display: inline;
+	}
+	img {
+		margin: 0 0 20px 0;
+		width: 140px;
+		height: auto;
+	}
+	a {
+		font-weight: 600;
+		color: #000000;
+		font-size: 16px;
+		padding: 0 15px;
+	}
+	a:hover {
+		color: #452d85;
+	}
+	.social-networks {
+		a {
+			color: #452d85;
+			font-size: 26px;
+		}
+		a:hover {
+			color: #8167c5;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1366px;
+	}
+}
+@media (max-width: 1199px) {
+	.tier1-bg {
+		.col-md-6 {
+			min-height: 247px;
+		}
+		.tier1-txt {
+			font-size: 36px;
+		}
+	}
+}
+@media (max-width: 991px) {
+	.navbar .navbar-brand {
+		margin: 0 10px 0 10px;
+	}
+	.tier1-bg {
+		.col-md-6 {
+			min-height: 208px;
+		}
+		.tier1-txt {
+			font-size: 28px;
+		}
+	}
+}
+@media (max-width: 575px) {
+	.tier3 {
+		display: none;
+	}
+}

@@ -1,0 +1,49 @@
+commands:
+create migration:
+  php vendor/bin/phinx create MyNewMigration
+
+run migration:
+  php vendor/bin/phinx migrate -e development
+
+phpunit:
+  vendor/bin/phpunit Funnlz/Tests/{testfile}
+
+logins:
+  email : admin@funnlz.io / 0YX^#3*Jw2#@P)R4
+  twitter : admin@funnlz.io / P@ssw0rd
+
+
+References:
+create login with gmail
+  https://developers.google.com/identity/sign-in/web/devconsole-project
+
+https://stackoverflow.com/questions/37063685/facebook-oauth-the-domain-of-this-url-isnt-included-in-the-apps-domain
+1) Enable "Embedded Browser OAuth Login"
+
+2) Disable "Use Strict Mode for Redirect URIs" and enter a redirect URI like the way I did.
+
+3) Leave all the rest of the options as is. 4) Save your changes
+
+5) Enjoy :)
+=============
+mod rewrite
+
+File: /etc/apache2/sites-enabled/funnlz.conf                                                                          
+
+<VirtualHost *:80>
+    ServerAdmin admin@example.com
+    ServerName funnlz.dev
+    ServerAlias funnlz.dev
+    DocumentRoot /media/aldo/5a89a644-1277-4713-a756-7c434a62b8a81/home/aldo/blog/public
+    ErrorLog ${APACHE_LOG_DIR}/funnlz-error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    <Directory /media/aldo/5a89a644-1277-4713-a756-7c434a62b8a81/home/aldo/blog/public>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+</VirtualHost>
+
+

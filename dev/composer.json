@@ -1,0 +1,19 @@
+{
+	"description" : "The CodeIgniter Application with Composer",
+	"require": {
+		"php": ">=5.3.2",
+		"codeigniter/framework": "3.1.*",
+		"hybridauth/hybridauth": "^2.9",
+		"pimple/pimple": "~3.0",
+		"opauth/opauth": "^0.4.4",
+		"opauth/facebook": "^0.4.0",
+		"opauth/google": "^0.2.2",
+		"ikkez/f3-schema-builder": "dev-master",
+		"robmorgan/phinx": "^0.9.1",
+		"phpmailer/phpmailer": "^6.0"
+	},
+	"require-dev": {
+		"mikey179/vfsStream": "1.1.*",
+		"phpunit/phpunit": "^4.8"
+	}
+}
