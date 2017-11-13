@@ -11,8 +11,9 @@ var gulp = require('gulp'), 
 	
 
 var config = {
-     sassPath: './resources/sass',
-     bowerDir: './bower_components' 
+     sassPath: './src/scss',
+     bowerDir: './bower_components' ,
+     nodejsDir: './node_modules' 
 }
 
 gulp.task('bower', function() { 
@@ -30,8 +31,8 @@ gulp.task('css', function() { 
          .pipe(sass({
              style: 'compressed',
              loadPath: [
-                 './resources/sass',
-                 config.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+                 './src/sass',
+                 config.nodejsDir + '/bootstrap/scss',
                  config.bowerDir + '/fontawesome/scss',
              ]
          }) 
@@ -46,7 +47,7 @@ gulp.task('css', function() { 
 });
 
 gulp.task('scripts', function () {
-    gulp.src('./resources/js/**/*.js')
+    gulp.src(['node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/jquery/dist/jquery.min.js', 'node_modules/tether/dist/js/tether.min.js','./src/js/**/*.js'])
         .pipe(concat('main.js'))
         .pipe(gulp.dest('../public/assets/js'))
         .pipe(rename({suffix: '.min'}))

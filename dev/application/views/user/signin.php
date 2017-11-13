@@ -1,23 +1,23 @@
 <div class="container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info" >
-            <div class="panel-heading">
-                <div class="panel-title">Sign In</div>
+    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 mx-auto">
+        <div class="card panel-info" >
+            <div class="card-header">
+                <div class="card-title">Sign In</div>
                 <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="/user/forgot">Forgot password?</a></div>
             </div>
 
-            <div style="padding-top:30px" class="panel-body" >
+            <div style="padding-top:30px" class="card-body" >
 
                 <?php $this->load->view('status') ;?>
                 <?php echo form_open('/user/', 'id="loginform" class="form-horizontal" role="form"');?>
 
                     <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                         <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">
                     </div>
 
                     <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
                         <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
                     </div>
 
@@ -32,7 +32,7 @@
                     </div>
                     -->
 
-                    <div style="margin-top:10px" class="form-group">
+                    <div style="margin-top:10px" class="form-group row">
                         <!-- Button -->
 
                         <div class="col-sm-3 controls">
@@ -44,7 +44,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group row">
                         <div class="col-md-12 control">
                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
                                 Don't have an account!

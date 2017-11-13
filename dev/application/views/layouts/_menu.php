@@ -17,7 +17,7 @@
                 </li>
             </ul>
             <div class="login-bottons pull-right">
-                <a class="login" id="login" href="/user"><i class="fa fa-lg fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a><a class="btn btn-primary my-2 my-sm-0" role="button" type="button" id="signup" href="/user/signup" ><i class="fa fa-lg fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;SIGN UP</a>
+                <a class="login" id="login" href="/user"><i class="fa fa-lg fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a><a class="btn btn-primary my-2 my-sm-0" role="button" id="signup" href="/user/signup" ><i class="fa fa-lg fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;SIGN UP</a>
             </div>
         </div>
     </nav>

@@ -1,10 +1,10 @@
 <div class="container">
     <div id="signupbox" style="margin-top:50px" class="mainbox col-md-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Dashboard</div>
+        <div class="card panel-info">
+            <div class="card-header">
+                <div class="card-title">Dashboard</div>
             </div>
-            <div class="panel-body" >
+            <div class="card-body" >
                 <div class="col-md-6">
                     <h2>Recent Products</h2>
                     <table class="table table-striped table-bordered">
