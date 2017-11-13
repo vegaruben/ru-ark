@@ -47,6 +47,7 @@ $(document).ready(function(){
 
             });
         function bindDeleteBtn(){
+			$('#tblproducts .btn-danger').off('click');
             $('#tblproducts .btn-danger').click(function(e){
                 e.preventDefault();
                 if(!confirm('Are you sure you want to delete this data')){
