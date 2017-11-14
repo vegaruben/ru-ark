@@ -26,7 +26,7 @@ $(document).ready(function(){
                 ],
                 "aaSorting": [[ 0, "desc" ]],
                 "bFilter":false,
-                "sPaginationType": "full_numbers",
+                "pagingType": "full_numbers",
                 "sInfoEmpty": 'No entries to show',
                 "sEmptyTable": "No Sources found currently, please add at least one.",
                 "ajax":{

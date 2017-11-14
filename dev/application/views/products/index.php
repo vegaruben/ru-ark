@@ -1,6 +1,3 @@
-<style>
-
-</style>
 <div class="container">
     <div id="product-box" class="mainbox col-md-12">
         <div class="card panel-info">
@@ -14,20 +11,20 @@
                 <div class="clearfix"></div>
                 <br />
                 <?php $this->load->view('status');?>
-                <form id="frmSearch" class="form-inline pull-right" actions="/product" method="post">
-                    <div class="form-group row">
-                        <label for="txtFilter">Filter</label>
+                <form id="frmSearch" class="form-inline pull-right" action="/product" method="post">
+                    <div class="form-group">
+                        <label for="txtFilter">Filter:&nbsp;&nbsp;</label>
                         <input type="text" id="txtFilter" name="txtFilter" class="form-control" placeholder="Filter" />
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
-                <table id="tblproducts" class='table table-striped table-bordered' width="100%">
+                <table id="tblproducts" class="table table-striped table-bordered dt-responsive nowrap" width="100%">
                     <thead>
                     <tr>
                         <th>SKU</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Action</th>
+                        <th data-orderable="false">Action</th>
                     </tr>
                     </thead>
                     <tbody>
