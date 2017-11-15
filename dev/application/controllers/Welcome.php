@@ -28,6 +28,7 @@ class Welcome extends MY_Controller
         $this->data['meta_title'] = 'Funnlz.io';
         $this->data['meta_desc'] = 'Funnlz.io';
         $this->data['slug'] = 'home';
+        $this->data['jsfiles'] = array('home.js');
 
         $this->data['menu'] = array('url' => $this->data['slug'] , 'display' => 'Funnlz.io');
         $this->load->view('home',  $this->data);

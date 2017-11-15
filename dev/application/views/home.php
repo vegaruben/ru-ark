@@ -11,14 +11,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/echad.css">
 </head>
-<body>
+<body class="home">
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#"><img src="/assets/img/logo-funnlz.png"></a>
-        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>-->
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -32,12 +32,116 @@
                 </li>
             </ul>
             <div class="login-bottons pull-right">
-                <a class="login" id="" href="/user/"><i class="fa fa-lg fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a><a href="/user/signup" class="btn btn-primary my-2 my-sm-0" id="" ><i class="fa fa-lg fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;SIGN UP</a>
+                <a href="#" class="login" id="" data-toggle="modal" data-target="#loginDlg"><i class="fa fa-lg fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a><a href="#" data-toggle="modal" data-target="#signupDlg" class="btn btn-primary my-2 my-sm-0" id="" ><i class="fa fa-lg fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;SIGN UP</a>
             </div>
         </div>
     </nav>
 </div>
+<!-- Login Modal -->
+<div aria-hidden="true" aria-labelledby="loginDlgLabel" class="modal fade" id="loginDlg" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="loginDlgLabel">Login</h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">				
+					<?php echo form_open('/user/ajax_login', 'id="loginform" class="form-horizontal" role="form"');?>
+						<?php $this->load->view('status') ;?>
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+							<input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">
+						</div>
 
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+							<input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+						</div>
+
+
+						<!--
+						<div class="input-group">
+							<div class="checkbox">
+								<label>
+									<input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+								</label>
+							</div>
+						</div>
+						-->
+
+						<div style="margin-top:10px" class="form-group row">
+							<!-- Button -->
+
+							<div class="col-sm-3 controls">
+								<button type="submit" id="btn-login" class="btn btn-success">Login  </button>
+							</div>
+							<div class="col-sm-9 controls pull-right">
+								<p class="pull-right"><a id="btn-fblogin" href="/user/facebook-login" class="btn btn-primary ">Facebook</a>&nbsp;&nbsp; <a id="btn-gmaillogin" href="/user/gmail-login" class="btn btn-primary ">Gmail</a>&nbsp;&nbsp; <a id="btn-twitterlogin" href="/user/twitter-login" class="btn btn-primary">Twitter</a>&nbsp;</p>
+							</div>
+						</div>
+
+					<?php echo form_close();?>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<!--signup modal-->
+<!-- Login Modal -->
+<div aria-hidden="true" aria-labelledby="signupDlgLabel" class="modal fade" id="signupDlg" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="signupDlgLabel">Signup</h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<?php echo form_open('/user/ajax-signup','id="signupform" class="form-horizontal" role="form"');?>
+                    <?php $this->load->view('status') ;?>
+                    <div class="form-group row">
+                        <label for="email" class="col-md-3 form-control-label">Email</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="email" placeholder="Email Address" required value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="firstname" class="col-md-3 form-control-label">First Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lastname" class="col-md-3 form-control-label">Last Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-md-3 form-control-label">Password</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required >
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                            <span style="margin-left:8px;">or</span>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
+
+                        <div class="col-md-offset-3 col-md-9">
+                            <p class="pull-right"><a id="btn-fblogin" href="/user/facebook-login" class="btn btn-primary ">Facebook</a>&nbsp;&nbsp; <a id="btn-gmaillogin" href="/user/gmail-login" class="btn btn-primary ">Gmail</a>&nbsp;&nbsp; <a id="btn-twitterlogin" href="/user/twitter-login" class="btn btn-primary">Twitter</a>&nbsp;</p>
+                        </div>
+
+                    </div>
+                <?php echo form_close();?>
+			</div>			
+		</div>
+	</div>
+</div>
 <div class="tier1-bg">
     <div class="container h-100">
         <div class="row h-100">
@@ -206,10 +310,33 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="http://funnlz.dev/assets/js/jquery.min.js"><\/script>')</script>
-<script type="text/javascript" src="http://funnlz.dev/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="<?=base_url('assets/js/main.min.js')?>"></script>
+
+
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="http://funnlz.dev/assets/js/ie10-viewport-bug-workaround.js"></script>
-</body>
+<script src="<?=base_url('assets/js/ie10-viewport-bug-workaround.js')?>"></script>
+<script>
+    var csfrData = {};
+    csfrData['<?php echo $this->security->get_csrf_token_name(); ?>'] = '<?php echo $this->security->get_csrf_hash(); ?>';
+    jQuery(document).ready(function($) {
+        // Attach csfr data token
+        $.ajaxSetup({
+            data: csfrData
+        });
+    });
+</script>
+
+
+<?php
+//for development may be its faster to separete the js files
+if (isset($jsfiles) && count($jsfiles)){
+    foreach ($jsfiles as $js){
+        echo "<script type=\"text/javascript\" src=\"". base_url(). "assets/js/$js\" ></script>\r\n";
+    }
+}
+?>
 </html>
+

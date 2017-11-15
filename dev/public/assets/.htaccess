@@ -1,4 +1,5 @@
 <FilesMatch "\.(js|css|jpg|png|jpeg|gif|xml|json|txt|pdf|mov|avi|otf|woff|ico|swf)$">
+	<ifModule mod_headers.c>
 	RequestHeader unset Cookie
 	Header unset Cookie
   	Header unset Set-Cookie
@@ -6,4 +7,6 @@
   	Header unset Pragma
 	FileETag None 
 	Header unset ETag
+	</ifModule>
 </FilesMatch>
+

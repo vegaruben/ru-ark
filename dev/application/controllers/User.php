@@ -263,5 +263,57 @@ class User extends MY_Controller {
     public function facebook_login(){
         $this->hybridauth_login('Facebook');
     }
+    //ajax--------------
+	public function ajax_login(){
+		$form = new LoginForm();
+        if($this->isPost()){
+            $form->bind($_POST);
+            if($form->validate()) {
+                $svc = $this->container['userService'];
+                try{
+                    $user = $svc->login($form->username, $form->password);
+                    if($user){
+                        $this->set_user($user);
 
+                        $ret = array('success'=>1,'message'=>'You have successfully signed in');
+                        
+                    }else{
+                        $ret = array('success'=>0,'message'=>'Failed to login');
+                    }
+                }catch(ServiceException $e){
+                    $ret = array('success'=>0,'message'=> $e->getMessage());
+                }
+            }else{
+                $ret = array('success'=>0,'message'=> $form->error_messages());
+            }            
+        }else{
+			$ret = array('success'=>0,'message'=> 'POST only');
+		}
+        echo json_encode($ret);
+	}
+	
+	public function ajax_signup(){
+		$form = new UserEntity();
+        if($this->isPost()){
+            $form->bind($_POST);
+            if($form->validate()) {
+                $svc = $this->container['userService'];
+                try{
+                    $ret = $svc->registerUser($form);
+                    if($ret){
+                        $ret = array('success'=>1,'message'=>'You have successfully registered. Please login');                        
+                    }else{
+                        $ret = array('success'=>0,'message'=>'Failed to save user');
+                    }
+                }catch(ServiceException $e){
+                    $ret = array('success'=>0,'message'=>$e->getMessage());
+                }
+            }else{
+                $ret = array('success'=>0,'message'=> $form->error_messages());
+            }            
+        }else{
+			$ret = array('success'=>0,'message'=> 'POST only');
+		}
+        echo json_encode($ret);
+	}
 }
