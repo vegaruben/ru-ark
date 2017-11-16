@@ -142,6 +142,13 @@
 		</div>
 	</div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php $this->load->view('status');?>
+        </div>
+    </div>
+</div>
 <div class="tier1-bg">
     <div class="container h-100">
         <div class="row h-100">

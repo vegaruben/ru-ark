@@ -46,14 +46,21 @@ class UserService{
         if($prev!=NULL){
             throw new ServiceException('email already taken');
         }
+
+        $user->isActive = FALSE;
+        $user->activationCode = bin2hex(openssl_random_pseudo_bytes(16));
+
         //hash password
         $passhash = password_hash($user->password,PASSWORD_DEFAULT);
         $user->password = $passhash;
         //set created date
         $user->createdDate = TimeHelper::get_current_time();
         //save to db
+
         $ret = $this->mapper->save($user);
         if($ret){
+            //send activation email
+            $this->sendUserActivationEmail($user);
             return $user;
         }
         return FALSE;
@@ -70,6 +77,9 @@ class UserService{
         $user = $this->mapper->findByEmail($username);
         if($user==NULL){
             return FALSE;
+        }
+        if(!$user->isActive){
+            throw new ServiceException('User is inactive. Please check your email to activate it.');
         }
 
         if (password_verify($password, $user->password)) {
@@ -149,8 +159,8 @@ class UserService{
     }
 
     private function sendResetPasswordEmail(User $user){
-        $htmlmsg = sprintf('<p>To reset your password please go this link <a href="http://dev.funnlz.io/user/reset/%d/%s">http://dev.funnlz.io/user/reset/%d/%s</a></p>', $user->id, $user->forgottenPasswordCode, $user->id, $user->forgottenPasswordCode);
-        $plainmsg = sprintf('To reset your password please go this link <a href="http://dev.funnlz.io/user/reset/%d/%s">http://dev.funnlz.io/user/reset/%d/%s</a>', $user->id, $user->forgottenPasswordCode, $user->id, $user->forgottenPasswordCode);
+        $htmlmsg = sprintf('<p>To reset your password please go to this link <a href="http://dev.funnlz.io/user/reset/%d/%s">http://dev.funnlz.io/user/reset/%d/%s</a></p>', $user->id, $user->forgottenPasswordCode, $user->id, $user->forgottenPasswordCode);
+        $plainmsg = sprintf('To reset your password please go to this link <a href="http://dev.funnlz.io/user/reset/%d/%s">http://dev.funnlz.io/user/reset/%d/%s</a>', $user->id, $user->forgottenPasswordCode, $user->id, $user->forgottenPasswordCode);
 
         $svc = $this->app['mailerService'];
 
@@ -213,5 +223,35 @@ class UserService{
         //$socialMapper = new SocialUserMapper($this->app['pdo_adapter']);
         //return $socialMapper->findById($id);
         return $this->mapper->findSocialUserById($id);
+    }
+    public function findByIdAndActivationCode($userId, $code){
+        $user = $this->mapper->findByIdAndActivationCode($userId, $code);
+        return $user;
+    }
+    private function sendUserActivationEmail(User $user){
+        $htmlmsg = sprintf('<p>To activate your account please go to this link <a href="http://dev.funnlz.io/user/activate/%d/%s">http://dev.funnlz.io/user/activate/%d/%s</a></p>', $user->id, $user->activationCode, $user->id, $user->activationCode);
+        $plainmsg = sprintf('To activate your account please go to this link <a href="http://dev.funnlz.io/user/activate/%d/%s">http://dev.funnlz.io/user/activate/%d/%s</a>', $user->id, $user->activationCode, $user->id, $user->activationCode);
+
+        $svc = $this->app['mailerService'];
+
+        $email = new Email();
+        $email->fromName = 'Funnlz';
+        $email->fromEmail = 'vm@akavesh.com';
+        $email->subject = 'Activate Your Account';
+        $email->htmlMessage = $htmlmsg;
+        $email->plainTextMessage = $plainmsg;
+        $email->toEmail = $user->email;
+        $email->toName = $user->firstName.' '.$user->lastName;
+
+        return $svc->sendEmail($email);
+    }
+
+    public function activateUser(User $user){
+        //save to db
+        $ret = $this->mapper->activateUser($user);
+        if($ret){
+            return $user;
+        }
+        return FALSE;
     }
 }

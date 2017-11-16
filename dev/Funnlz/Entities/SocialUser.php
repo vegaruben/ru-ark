@@ -8,7 +8,7 @@
 
 namespace Funnlz\Entities;
 
-
+//NOT USED
 class SocialUser extends User
 {
     public $socialId;

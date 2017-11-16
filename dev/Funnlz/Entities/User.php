@@ -21,6 +21,7 @@ class User extends BaseEntity{
     public $forgottenPasswordCode;
     public $forgottenPasswordTime;
     public $rememberCode;
+    public $isActive;
 
     public $displayName;
 

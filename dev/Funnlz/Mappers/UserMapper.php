@@ -51,6 +51,15 @@ class UserMapper extends AbstractDataMapper {
         //$user->password = stream_get_contents($user->password);
         return $user;
     }
+    public function findByIdAndActivationCode($userId, $code){
+        $ret = $this->findAll(['activationCode'=>$code, 'id'=>$userId]);
+        if($ret == NULL){
+            return NULL;
+        }
+        $user = $ret[0];
+        //$user->password = stream_get_contents($user->password);
+        return $user;
+    }
     /**
      * save user to db
      * @param User $user
@@ -63,13 +72,15 @@ class UserMapper extends AbstractDataMapper {
             'lastName'=>$user->lastName,
             'email'=>$user->email,
             'roles'=>$user->roles,
-            //'isAllowed'=>'TRUE',//TODO: validate email using activation email
         ];
         if(!empty($user->password)){
             $data['password'] = $user->password;
         }
-        if($user->id==NULL){
+        if($user->id==NULL){//new user
+            $data['isActive'] = $user->isActive;
             $data['createdDate'] = $user->createdDate;
+            $data['activationCode'] = $user->activationCode;
+
             $ret = $this->getAdapter()->insert($this->entityTable, $this->setCreatedDate($data))->getLastInsertId();//return id
 
             if($ret>0){
@@ -117,6 +128,17 @@ class UserMapper extends AbstractDataMapper {
         $data = [
             'forgottenPasswordCode'=>'',
             'forgottenPasswordTime'=>NULL,
+        ];
+        $ret = $this->getAdapter()->update($this->entityTable, $this->setModifiedDate($data), 'id='.intval($user->id));
+        if($ret>0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+    public function activateUser(User &$user){
+        $data = [
+            'isActive'=>1,
+            'activationCode'=>'',
         ];
         $ret = $this->getAdapter()->update($this->entityTable, $this->setModifiedDate($data), 'id='.intval($user->id));
         if($ret>0){

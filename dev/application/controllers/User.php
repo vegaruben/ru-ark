@@ -5,6 +5,7 @@ use Funnlz\Entities\User as UserEntity;
 use Funnlz\Entities\LoginForm;
 use Funnlz\Entities\ForgotForm;
 use Funnlz\Entities\ResetPasswordForm;
+use Funnlz\Entities\UserActivationForm;
 //use Hybrid_Endpoint;
 use Funnlz\Services\ServiceException;
 
@@ -187,6 +188,38 @@ class User extends MY_Controller {
         $this->data['menu'] = array('url' => $this->data['slug'] , 'display' => 'Reset Password');
         $this->load->view('template_guest',  $this->data);
     }
+    public function activate($userId, $activationCode){
+        $form = new UserActivationForm();
+
+        $msg = '';
+        $success = FALSE;
+        if(empty($userId) || empty($activationCode)){
+            $msg = 'Invalid user id / user activation code';
+        }else{
+            $form->userId = $userId;
+            $form->activationCode = $activationCode;
+
+            $svc = $this->container['userService'];
+
+            $user = $svc->findByIdAndActivationCode($form->userId, $form->activationCode);
+
+            if($user==NULL){
+                $msg = 'Invalid user id / activation code';
+            }else{
+                //activate
+                if(!$svc->activateUser($user)){
+                    $msg =  'Failed to activate user';
+                }else{
+                    $msg = 'User activated. Please login';
+                    $success = TRUE;
+                }
+            }
+
+        }
+
+        $this->session->set_flashdata($success ? 'success':'error', $msg);
+        return redirect('/','refresh');
+    }
 
     /*social logins*/
     public function social_signup_callback(){
@@ -301,7 +334,7 @@ class User extends MY_Controller {
                 try{
                     $ret = $svc->registerUser($form);
                     if($ret){
-                        $ret = array('success'=>1,'message'=>'You have successfully registered. Please login');                        
+                        $ret = array('success'=>1,'message'=>'You have successfully registered. Please check your email to activate your account');
                     }else{
                         $ret = array('success'=>0,'message'=>'Failed to save user');
                     }
