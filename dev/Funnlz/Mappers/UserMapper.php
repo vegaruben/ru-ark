@@ -2,6 +2,7 @@
 namespace Funnlz\Mappers;
 
 use Funnlz\Entities\User;
+use Funnlz\Entities\SocialUser;
 use Funnlz\Entities\StudentUser;
 use Funnlz\Entities\StaffUser;
 use Funnlz\Entities\Paging;
