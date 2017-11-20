@@ -21,6 +21,7 @@ class Dashboard extends RegisteredUserController{
 
     public function index(){
         $svc = $this->container['productService'];
+        $this->data['jsfiles'] = ['dashboard.js'];
 
         $this->data['recent_products'] = $svc->getRecentProducts($this->get_user_id());
         $this->data['v'] = 'dashboard/index';

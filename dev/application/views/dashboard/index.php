@@ -1,5 +1,5 @@
 <div class="container">
-    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-12">
+    <div id="dashboard-box" style="margin-top:50px" class="mainbox col-md-12">
         <div class="card panel-info">
             <div class="card-header">
                 <div class="card-title">Dashboard</div>
@@ -42,5 +42,17 @@
 
 
 
+    </div>
+</div>
+<div aria-hidden="true" aria-labelledby="welcomeDlgLabel" class="modal fade" id="welcomeDlg" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="welcomeDlgLabel">Welcome</h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                Your account has been created.
+            </div>
+        </div>
     </div>
 </div>

@@ -68,7 +68,7 @@ class User extends MY_Controller {
                 try{
                     $ret = $svc->registerUser($form);
                     if($ret){
-                        $this->session->set_flashdata('success','You have successfully registered');
+                        $this->session->set_flashdata('success','Thank you for signing up, Please check your e-mail. You have been sent an e-mail message to '.$form->email.' which has a link to confirm that you have signed up.');
                         return redirect('/user','refresh');
                     }else{
                         $this->session->set_flashdata('error', 'Failed to save user');
@@ -192,6 +192,7 @@ class User extends MY_Controller {
         $form = new UserActivationForm();
 
         $msg = '';
+        $url = '/';
         $success = FALSE;
         if(empty($userId) || empty($activationCode)){
             $msg = 'Invalid user id / user activation code';
@@ -210,15 +211,18 @@ class User extends MY_Controller {
                 if(!$svc->activateUser($user)){
                     $msg =  'Failed to activate user';
                 }else{
-                    $msg = 'User activated. Please login';
+                    $this->set_user($user);
+                    //$msg = 'User activated. Please login';
                     $success = TRUE;
+                    $url = '/dashboard?activated=1';
+                    return redirect($url,'refresh');
                 }
             }
 
         }
 
         $this->session->set_flashdata($success ? 'success':'error', $msg);
-        return redirect('/','refresh');
+        return redirect($url,'refresh');
     }
 
     /*social logins*/
@@ -334,7 +338,7 @@ class User extends MY_Controller {
                 try{
                     $ret = $svc->registerUser($form);
                     if($ret){
-                        $ret = array('success'=>1,'message'=>'You have successfully registered. Please check your email to activate your account');
+                        $ret = array('success'=>1,'message'=>'Thank you for signing up, Please check your e-mail. You have been sent an e-mail message to '.$form->email.' which has a link to confirm that you have signed up.');
                     }else{
                         $ret = array('success'=>0,'message'=>'Failed to save user');
                     }

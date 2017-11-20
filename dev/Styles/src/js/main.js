@@ -8,7 +8,7 @@ $(document).ready(function () {
         oldIE = true;        
     }    
     
-    if(error_fields){
+    if(window.hasOwnProperty('error_fields') && error_fields){
 		var xy =jQuery.parseJSON(error_fields);
 		for(var i=0;i<xy.length;i++){			
 			$('#'+xy[i]).addClass('has-error');
