@@ -67,7 +67,7 @@ class UserService{
 
     }
     /**
-     * admin login using username(email) and password
+     * local user login using username(email) and password
      * @param String $username
      * @param String $password
      * return boolean false or User
@@ -78,6 +78,11 @@ class UserService{
         if($user==NULL){
             return FALSE;
         }
+        //check whether this user was logged in using social media
+        if(!empty($user->socialId)){
+            throw new ServiceException('Please login using your '.$user->provider.' account.');
+        }
+
         if(!$user->isActive){
             throw new ServiceException('User is inactive. Please check your email to activate it.');
         }

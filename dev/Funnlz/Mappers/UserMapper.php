@@ -165,6 +165,7 @@ class UserMapper extends AbstractDataMapper {
             'profileURL'=>$user->profileURL,
             'roles'=>$user->roles,
             'lastAccess'=>$user->lastAccess,
+            'isActive'=>1,
         ];
         $ret = $this->getAdapter()->insert($this->entityTable, $this->setCreatedDate($data))->getLastInsertId();//return id
 
