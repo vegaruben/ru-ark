@@ -19,6 +19,15 @@ class Product extends BaseEntity
     public $urlToBuy;
     public $ownerId;
 
+    public $productType;
+    public $vendor;
+    public $salePrice;
+    public $regularPrice;
+    public $requiresShipping;
+    public $weightLbs;
+    public $HSTariffCode;
+
+
     public $modifiedDate;
     public $createdDate;
 

@@ -29,6 +29,7 @@ class ProductMapper extends AbstractDataMapper
 
         return NULL;
     }
+
     public function save(Product &$entity){
         $data = [
             'SKU'=>$entity->SKU,
@@ -37,7 +38,16 @@ class ProductMapper extends AbstractDataMapper
             'description'=>$entity->description,
             'urlToBuy'=>$entity->urlToBuy,
             'ownerId'=>$entity->ownerId,
+
+            'productType'=>$entity->productType,
+            'vendor'=>$entity->vendor,
+            'salePrice'=>$entity->salePrice,
+            'regularPrice'=>$entity->regularPrice,
+            'requiresShipping'=>$entity->requiresShipping,
+            'weightLbs'=>$entity->weightLbs,
+            'HSTariffCode'=>$entity->HSTariffCode,
         ];
+        //var_dump($data);exit();
         if($entity->id==NULL){
             $ret = $this->getAdapter()->insert($this->entityTable, $this->setCreatedDate($data))->getLastInsertId();//return id
 

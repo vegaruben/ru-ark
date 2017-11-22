@@ -8,7 +8,7 @@ $container = new Container();
 // define some services
 $container['config'] = function ($c){
     $upload_config = array();
-    $upload_config['upload_path']   = '/media/aldo/5a89a644-1277-4713-a756-7c434a62b8a81/home/aldo/blog/public/media';
+    $upload_config['upload_path']   = '/home/aldo/projects/Funnlz.io/github/ru-ark/dev/public/media';
     $upload_config['allowed_types'] = 'gif|jpg|png';
     $upload_config['max_size']      = 2000;
     //$config['max_width']     = 1024;

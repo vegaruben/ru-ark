@@ -76,6 +76,24 @@ $(document).ready(function(){
     //product form
     if($('#product-entry-box').length !== 0){
 
+        $("div#dropzone").dropzone(
+            {
+                url: "/products/upload-product-image" ,
+                init: function() {
+                    this.on("sending", function(file, xhr, formData) {
+                        console.log('dasdas');
+                        formData.append('funnlz_csrf',csfrData.funnlz_csrf);
+                    });
+                    this.on("success", function(file, response){
+                        var data = jQuery.parseJSON(response);
+                        console.log('xxx',data)
+                        $('#picture').val(data.messages.new_name);
+                    });
+
+                }
+            }
+        );
+
         $('.previewComponent .fileInput').change(function(){
             var input = this;
             var preview = $(input).parent().find('.imgPreview');

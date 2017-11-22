@@ -10,7 +10,8 @@
 		"opauth/google": "^0.2.2",
 		"ikkez/f3-schema-builder": "dev-master",
 		"robmorgan/phinx": "^0.9.1",
-		"phpmailer/phpmailer": "^6.0"
+		"phpmailer/phpmailer": "^6.0",
+		"paragonie/random_compat": "^2.0"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*",

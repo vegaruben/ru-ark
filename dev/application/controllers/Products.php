@@ -55,8 +55,9 @@ class Products extends RegisteredUserController
         $config['upload_path'] = $user_dir;
 
         $this->load->library('upload', $config);
+        $fieldName = isset($_FILES['file']) ? 'file' : 'userfile';
 
-        if ( ! $this->upload->do_upload('userfile')) {
+        if ( ! $this->upload->do_upload($fieldName)) {
             $error = array('error' => $this->upload->display_errors());
             return ['status'=>'error', 'messages'=> $this->upload->display_errors(). $config['upload_path']];
         }
@@ -132,7 +133,7 @@ class Products extends RegisteredUserController
             $this->data['menu'] = array('url' => $this->data['slug'] , 'display' => 'Edit Product');
         }
         $this->data['v'] = 'products/entry';
-        $this->data['jsfiles'] = array('product.js');
+        $this->data['jsfiles'] = array('dropzone.js','product.js');
         $this->data['product'] = $product;
         $this->load->view('template_registered',  $this->data);
     }
@@ -173,5 +174,8 @@ class Products extends RegisteredUserController
             //echo json_encode($result);
             datatables_json($result,$cols);
         }
+    }
+    public function upload_product_image(){
+       echo json_encode($this->uploadProductImage());
     }
 }
