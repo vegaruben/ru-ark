@@ -78,6 +78,8 @@ $(document).ready(function(){
 
         $("div#dropzone").dropzone(
             {
+                maxFiles:1,
+                thumbnailWidth: 140,
                 url: "/products/upload-product-image" ,
                 init: function() {
                     this.on("sending", function(file, xhr, formData) {

@@ -46,14 +46,16 @@
                     </div>
                     <div class="form-group row">
                         <label for="salePrice" class="col-md-3 form-control-label">Sale Price</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="salePrice" placeholder="Sale Price" required value="<?php echo set_value('salePrice', $product->salePrice); ?>">
+                        <div class="input-group col-md-9">
+                            <?php echo form_dropdown_currency('salePriceCurrency', set_value('salePriceCurrency',$product->salePriceCurrency), 'class="input-group-addon" '); ?>
+                            <input type="number" class="form-control" name="salePrice" placeholder="Sale Price" required value="<?php echo set_value('salePrice', $product->salePrice); ?>">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="regularPrice" class="col-md-3 form-control-label">Regular Price</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="regularPrice" placeholder="Regular Price" required value="<?php echo set_value('regularPrice', $product->regularPrice); ?>">
+                        <div class="input-group  col-md-9">
+                            <?php echo form_dropdown_currency('regularPriceCurrency', set_value('regularPriceCurrency',$product->regularPriceCurrency), 'class="input-group-addon" '); ?>
+                            <input type="number" class="form-control" name="regularPrice" placeholder="Regular Price" required value="<?php echo set_value('regularPrice', $product->regularPrice); ?>">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -75,10 +77,15 @@
                     <div class="form-group row">
                         <label for="HSTariffCode" class="col-md-3 form-control-label">HS Tariff Code</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="HSTariffCode" placeholder="HS Tariff Code" required value="<?php echo set_value('HS Tariff Code', $product->HSTariffCode); ?>">
+                            <input type="text" class="form-control" name="HSTariffCode" placeholder="HS Tariff Code" required value="<?php echo set_value('HSTariffCode', $product->HSTariffCode); ?>">
                         </div>
                     </div>
-                   
+                    <div class="form-group row">
+                        <label for="YouTubeLink" class="col-md-3 form-control-label">Youttube Link</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="YouTubeLink" placeholder="Youtube Link" required value="<?php echo set_value('YouTubeLink', $product->YouTubeLink); ?>">
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="image" class="col-md-3 form-control-label">Image </label>
                         <div class="col-md-9">
@@ -86,7 +93,7 @@
                                 <img class="imgPreview" src="<?php if(!empty($product->picture)){
                                     echo '/media/'.$this->session->userdata('userid').'/products/'.$product->picture;
                                 } ;?>"  />
-                                
+
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Drag n drop</a>
@@ -121,8 +128,8 @@
                     </div>
 
                     <div class="form-group row">
-                        <!-- Button -->
-                        <div class="col-md-offset-3 col-md-9">
+                        <label for="" class="col-md-3 form-control-label"></label>
+                        <div class="col-md-9">
                             <button id="btn-save" type="submit" class="btn btn-primary">Save</button>
 
                             <a id="btn-cancel" class="btn btn-info" href="/products/">Cancel</a>

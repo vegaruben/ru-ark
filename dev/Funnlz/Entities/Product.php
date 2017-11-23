@@ -7,7 +7,7 @@
  */
 
 namespace Funnlz\Entities;
-
+use Money\Money;
 
 class Product extends BaseEntity
 {
@@ -21,12 +21,17 @@ class Product extends BaseEntity
 
     public $productType;
     public $vendor;
+
     public $salePrice;
+    public $salePriceCurrency;
+
     public $regularPrice;
+    public $regularPriceCurrency;
+
     public $requiresShipping;
     public $weightLbs;
     public $HSTariffCode;
-
+    public $YouTubeLink;
 
     public $modifiedDate;
     public $createdDate;
@@ -34,7 +39,9 @@ class Product extends BaseEntity
 
 
     public function validate(){
-        $required = ['SKU', 'name', 'description', 'urlToBuy', 'ownerId'];
+        $required = ['SKU', 'name', 'description', 'urlToBuy', 'ownerId', 'salePrice', 'salePriceCurrency',
+            'regularPrice', 'regularPriceCurrency'];
+
         $this->requiredNotEmpty($required);
         if(isset($this->urlToBuy)){
             if (filter_var($this->urlToBuy, FILTER_VALIDATE_URL) !== false){
@@ -45,5 +52,11 @@ class Product extends BaseEntity
         }
 
         return !$this->has_error();
+    }
+    public function getSalePrice(){
+        return new Money($this->salePrice, new Currency($this->salePriceCurrency));
+    }
+    public function getregularPrice(){
+        return new Money($this->regularPrice, new Currency($this->regularPriceCurrency));
     }
 }

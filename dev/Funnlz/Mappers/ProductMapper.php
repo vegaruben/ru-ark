@@ -42,10 +42,13 @@ class ProductMapper extends AbstractDataMapper
             'productType'=>$entity->productType,
             'vendor'=>$entity->vendor,
             'salePrice'=>$entity->salePrice,
+            'salePriceCurrency'=>$entity->salePriceCurrency,
             'regularPrice'=>$entity->regularPrice,
+            'regularPriceCurrency'=>$entity->regularPriceCurrency,
             'requiresShipping'=>$entity->requiresShipping,
             'weightLbs'=>$entity->weightLbs,
             'HSTariffCode'=>$entity->HSTariffCode,
+            'YouTubeLink'=>$entity->YouTubeLink,
         ];
         //var_dump($data);exit();
         if($entity->id==NULL){

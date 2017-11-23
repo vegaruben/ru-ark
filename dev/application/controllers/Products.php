@@ -72,6 +72,7 @@ class Products extends RegisteredUserController
         }
     }
     public function entry($id = 0){
+        $this->load->helper('currency');
 
         $product = new ProductEntity();
 

@@ -48,7 +48,7 @@ class ProductService
             if(!empty($product->picture)){
                 $config = $this->app['config']['ProductImageUpload'];
 
-                if(!empty($existing->picture)){
+                if(!empty($existing->picture) && $product->picture != $existing->picture){
                     $exPic = $config['upload_path'].'/'.$existing->ownerId.'/products/'.$existing->picture;
                     if(file_exists($exPic)){
                         unlink($exPic);
