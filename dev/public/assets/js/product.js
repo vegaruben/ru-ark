@@ -76,10 +76,11 @@ $(document).ready(function(){
     //product form
     if($('#product-entry-box').length !== 0){
 
-        $("div#dropzone").dropzone(
+        Dropzone.options.dropzone =
             {
                 maxFiles:1,
-                thumbnailWidth: 140,
+                thumbnailWidth: 250,
+                thumbnailMethod:'contain',
                 url: "/products/upload-product-image" ,
                 init: function() {
                     this.on("sending", function(file, xhr, formData) {
@@ -91,10 +92,14 @@ $(document).ready(function(){
                         console.log('xxx',data)
                         $('#picture').val(data.messages.new_name);
                     });
-
+                    this.on('addedfile', function(file) {
+                        if (this.files.length > 1) {
+                            this.removeFile(this.files[0]);
+                        }
+                    });
                 }
-            }
-        );
+            };
+
 
         $('.previewComponent .fileInput').change(function(){
             var input = this;

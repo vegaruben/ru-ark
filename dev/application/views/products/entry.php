@@ -107,7 +107,7 @@
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="home" role="tabpanel">
-                                        <div id="dropzone" class="imgPreview" style="width:250px;height:200px;border:thin solid #222;">Drop files here to upload
+                                        <div id="dropzone" class="dropzone" style="width:200px;height:200px;border:thin solid #222;">
                                         </div>
                                         <input type="hidden" name="picture" id="picture" value="<?php echo $product->picture;?>" />
                                     </div>
