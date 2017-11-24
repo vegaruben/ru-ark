@@ -10,8 +10,9 @@ $(document).ready(function(){
     }
     //check if its on dashboard page
     if($('#dashboard-box').length !== 0) {
-        console.log('rrr',getParameterByName('activated'));
-        if(getParameterByName('activated')==1){
+        var msg = getParameterByName('msg');
+        if(msg){
+            $('#msg').html(msg);
             $("#welcomeDlg").modal();
         }
 

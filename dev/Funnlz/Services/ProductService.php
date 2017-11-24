@@ -45,11 +45,14 @@ class ProductService
                 throw  new ServiceException('Product not found');
             }
             //if this is new file then delete prev image on the server
-            if(!empty($product->picture) && !empty($existing->picture) && $product->picture != $existing->picture){
+            if(!empty($product->picture)){
                 $config = $this->app['config']['ProductImageUpload'];
-                $exPic = $config['upload_path'].'/'.$existing->ownerId.'/products/'.$existing->picture;
-                if(file_exists($exPic)){
-                    unlink($exPic);
+
+                if(!empty($existing->picture) && ($product->picture != $existing->picture)){
+                    $exPic = $config['upload_path'].'/'.$existing->ownerId.'/products/'.$existing->picture;
+                    if(file_exists($exPic)){
+                        unlink($exPic);
+                    }
                 }
 
             }else{

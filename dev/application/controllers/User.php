@@ -6,6 +6,8 @@ use Funnlz\Entities\LoginForm;
 use Funnlz\Entities\ForgotForm;
 use Funnlz\Entities\ResetPasswordForm;
 use Funnlz\Entities\UserActivationForm;
+use Funnlz\Entities\UpdatePasswordForm;
+
 //use Hybrid_Endpoint;
 use Funnlz\Services\ServiceException;
 
@@ -224,7 +226,33 @@ class User extends MY_Controller {
         $this->session->set_flashdata($success ? 'success':'error', $msg);
         return redirect($url,'refresh');
     }
+    public function update_password(){
+        $form = new UpdatePasswordForm();
 
+        if($this->isPost()){
+            $form->bind($_POST);
+            if($form->validate()) {
+                $svc = $this->container['userService'];
+                try{
+                    $ret = $svc->updatePassword($form);
+                    if($ret){
+                        $this->session->set_flashdata('success2','Password updated.');
+                        return redirect('/dashboard/profile','refresh');
+                    }else{
+                        $this->session->set_flashdata('error2', 'Failed to update the passsword');
+                    }
+                }catch(ServiceException $e){
+                    $this->session->set_flashdata('error2', $e->getMessage());
+                }
+            }else{
+                $this->session->set_flashdata('error2', $form->error_messages());
+            }
+        }else{
+            $this->session->set_flashdata('error2', 'POST only');
+
+        }
+        return redirect('/dashboard/profile','refresh');
+    }
     /*social logins*/
     public function social_signup_callback(){
         if (isset($_REQUEST['hauth_start']) || isset($_REQUEST['hauth_done']))
@@ -249,9 +277,14 @@ class User extends MY_Controller {
             $userx = $svc->socialLogin($provider, $user_profile);
             if($userx!=NULL){
                 $this->set_user($userx);
+                if($userx->firstLogin){
+                    $msg = 'Welcome to Funnlz, this is your Dashboard.';
+                    return redirect('/dashboard?msg='.$msg,'refresh');
+                }else{
+                    $this->session->set_flashdata('success','You have successfully signed in');
+                    return redirect('/dashboard','refresh');
+                }
 
-                $this->session->set_flashdata('success','You have successfully signed in');
-                return redirect('/dashboard/profile','refresh');
             }
             /*
 

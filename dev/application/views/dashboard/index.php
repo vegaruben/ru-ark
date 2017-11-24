@@ -51,7 +51,7 @@
                 <h5 class="modal-title" id="welcomeDlgLabel">Welcome</h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                Your account has been created.
+                <p id="msg"></p>
             </div>
         </div>
     </div>

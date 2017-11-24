@@ -2,6 +2,7 @@
 namespace Funnlz\Services;
 
 use Funnlz\Entities\SocialUser;
+use Funnlz\Entities\UpdatePasswordForm;
 use Pimple\Container;
 
 use Funnlz\Mappers\UserMapper;
@@ -212,9 +213,11 @@ class UserService{
         if($prev==NULL){
             if( $this->mapper->addSocialUser($user)) {
                 $user->username = $user->id;
+                $user->firstLogin = TRUE;
                 return $user;
             }
         }else{
+            $user->firstLogin = FALSE;
             $user->id = $prev->id;
             $user->username = $user->id;
             if($this->mapper->updateLastLogin($user)){
@@ -256,6 +259,21 @@ class UserService{
         $ret = $this->mapper->activateUser($user);
         if($ret){
             return $user;
+        }
+        return FALSE;
+    }
+
+    public function updatePassword(UpdatePasswordForm $form){
+        $user = $this->mapper->findById($form->userId);
+        if($user==NULL){
+            throw new ServiceException('user not found');
+        }
+        if (password_verify($form->password, $user->password)) {
+            $user->password = $form->newPassword;
+            $ret = $this->updateUser($user);
+            return $ret;
+        }else{
+            throw new ServiceException('Invalid password');
         }
         return FALSE;
     }

@@ -72,6 +72,7 @@ class UserMapper extends AbstractDataMapper {
             'lastName'=>$user->lastName,
             'email'=>$user->email,
             'roles'=>$user->roles,
+            'paypalEmail'=>$user->paypalEmail,
         ];
         if(!empty($user->password)){
             $data['password'] = $user->password;

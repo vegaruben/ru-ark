@@ -22,7 +22,9 @@ class User extends BaseEntity{
     public $forgottenPasswordTime;
     public $rememberCode;
     public $isActive;
+    public $paypalEmail;
 
+    //internal
     public $displayName;
 
     //internal
@@ -31,7 +33,7 @@ class User extends BaseEntity{
     public function validate(){
         $requiredFields = ['firstName', 'lastName', 'email'];
         $this->requiredNotEmpty($requiredFields);
-        $this->required(['password']);
+        //$this->required(['password']);
 
         if(isset($this->email)){
             if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
