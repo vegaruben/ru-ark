@@ -171,7 +171,7 @@ class Products extends RegisteredUserController
             $this->load->helper('datatables');
 
             $svc = $this->container['productService'];
-            $result = $svc->search($this->get_user_id(), $form);
+            $result = $svc->searchByOwner($this->get_user_id(), $form);
             //echo json_encode($result);
             datatables_json($result,$cols);
         }

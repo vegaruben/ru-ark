@@ -9,18 +9,20 @@ if (! function_exists('datatables_json'))
 		$ret['iTotalDisplayRecords'] = $pagingresult->totalrecords;
 		$data = array();
 		if($pagingresult->data!=NULL){
-			foreach($pagingresult->data as $v){
+			foreach($pagingresult->data as &$v){
 				$item = array();
 				foreach($cols as $c){
 				    if(is_object($v)){
                         if(!isset($v->$c)){
-                            echo 'Not found '.$c;
+                            $item[$c] = '';
+                            //echo 'Not found '.$c;
                         }else{
                             $item[$c] = $v->$c;
                         }
                     }else if(is_array($v)){
                         if(!isset($v[$c])){
-                            echo 'Not found '.$c;
+                            //echo 'Not found '.$c;
+                            $item[$c] = '';
                         }else{
                             $item[$c] = $v[$c];
                         }

@@ -6,10 +6,13 @@ use Funnlz\Entities\UpdatePasswordForm;
 use Pimple\Container;
 
 use Funnlz\Mappers\UserMapper;
+use Funnlz\Mappers\ProductMapper;
 use Funnlz\Mappers\SocialUserMapper;
 use Funnlz\Helpers\TimeHelper;
 use Funnlz\Entities\User;
 use Funnlz\Entities\Email;
+use Funnlz\Entities\Paging;
+use Funnlz\Entities\PagingResult;
 use Funnlz\Entities\ResetPasswordForm;
 
 
@@ -277,5 +280,29 @@ class UserService{
             throw new ServiceException('Invalid password');
         }
         return FALSE;
+    }
+
+    /**
+     * search users
+     * @param Paging pagination
+     * @return NULL or list of products in PagingResult
+     */
+    public function search(Paging $paging){
+        return $this->mapper->search($paging);
+    }
+
+    public function delete($id){
+        $user = $this->mapper->findById($id);
+        if($user==NULL){
+            throw new ServiceException('user not found');
+        }
+
+        TransactionHelper::enableTransaction($this->app);
+        //delete products first
+        $productMapper = new ProductMapper($this->app['pdo_adapter']);
+        $productMapper->deleteByUser($id);
+        //delete the user
+        $this->mapper->delete($id);
+        return TransactionHelper::commitTransaction($this->app);
     }
 }

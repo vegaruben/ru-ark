@@ -1,6 +1,8 @@
 <?php
 $menuitems = [
     'admin' => 'Admin Dashboard',
+    'admin/users' => 'Users',
+    'admin/products' => 'Products',
     'admin/showcase' => 'Show Case'
 ];
 ?>

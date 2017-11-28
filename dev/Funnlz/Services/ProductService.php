@@ -79,7 +79,7 @@ class ProductService
         $paging->setPageSize(5);
         $paging->setSort('createdDate','desc');
 
-        return $this->mapper->search($ownerId, $paging);
+        return $this->mapper->searchByOwner($ownerId, $paging);
     }
     /**
      * search product of this user
@@ -87,13 +87,37 @@ class ProductService
      * @param Paging pagination
      * @return NULL or list of products in PagingResult
      */
-    public function search($ownerId, Paging $paging){
-        return $this->mapper->search($ownerId, $paging);
+    public function searchByOwner($ownerId, Paging $paging){
+        return $this->mapper->searchByOwner($ownerId, $paging);
     }
 
+    /*ADMIN*/
     public  function searchRecentProducts(Paging $paging){
         return $this->mapper->searchRecentProducts( $paging);
     }
+    /**
+     * search product of this user
+     * @param $ownerId
+     * @param Paging pagination
+     * @return NULL or list of products in PagingResult
+     */
+    public function search(Paging $paging){
+        return $this->mapper->search($paging);
+    }
+    public function deleteByID($id){
+        $product = $this->mapper->findById($id);
+        if($product==NULL){
+            throw  new ServiceException('Product not found');
+        }
 
+        if(!empty($product->picture)){
+            $config = $this->app['config']['ProductImageUpload'];
+            $exPic = $config['upload_path'].'/'.$product->ownerId.'/products/'.$product->picture;
+            if(file_exists($exPic)){
+                unlink($exPic);
+            }
+        }
+        return $this->mapper->delete($id);
+    }
 
 }

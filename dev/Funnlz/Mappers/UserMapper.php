@@ -190,5 +190,73 @@ class UserMapper extends AbstractDataMapper {
         return $user;
     }
 
+    /**
+     * search product of this user
+     * @param $ownerId
+     * @param Paging pagination
+     * @return NULL or list of products in PagingResult
+     */
+    public function search( Paging $paging){
+        $filter = $paging->getFilter();
+        $order = $paging->getSort();
 
+        $result = new PagingResult();
+
+        $entities = array();
+        //get data
+        $sql = '';
+        $prm = [];
+        //filter rows
+        $sqlfilter = sprintf(' from %s  ', $this->entityTable);
+
+        if(!empty($filter)){
+            $sqlfilter .= ' and (LOWER(firstName) LIKE :filterx0 OR LOWER(lastName) LIKE :filterx1 OR LOWER(email) LIKE :filterx2)';
+            $prm[':filterx0'] = '%'.$filter.'%';
+            $prm[':filterx1'] = '%'.$filter.'%';
+            $prm[':filterx2'] = '%'.$filter.'%';
+        }
+        $sql = $sqlfilter;
+        if($order && count($order)>0){
+            $sql .= " ORDER BY ";
+            foreach($order as $k=>$v){
+                $sql .= $k.' '.$v;
+            }
+            //echo $sqlfilter;
+        }
+        $limit = $paging->getPageSize();
+        if(!empty($limit)){
+            $sql .= " LIMIT " . $limit;
+        }
+        $offset =  $paging->getStart();
+        if(!empty($offset)){
+            $sql .= " OFFSET " . $offset;
+        }
+        //echo $sql;
+        $bind = NULL;
+        $ret = $this->adapter->prepare('select * '.$sql)
+            ->execute($prm);
+
+        $rows = $this->adapter->fetchAll();
+
+        if ($rows) {
+            foreach ($rows as $row) {
+                $entities[] = $this->createEntity($row);
+            }
+            $result->setData($entities);
+
+            //total
+            $ret = $this->adapter->prepare('select count(*) as c '.$sqlfilter)
+                ->execute($prm);
+            $row = $this->adapter->fetch();
+            if($row){
+                $n = $row['c'];
+            }
+            $result->setTotalRecords($n);
+            $result->calculate($paging);
+
+        }
+
+        return $result;
+
+    }
 }
