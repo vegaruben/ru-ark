@@ -84,3 +84,4 @@ class MY_Controller extends CI_Controller {
 }
 //register other controllers
 require_once dirname(__FILE__).'/RegisteredUserController.php';
+require_once dirname(__FILE__).'/AdminUserController.php';

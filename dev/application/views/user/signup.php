@@ -6,7 +6,7 @@
                 <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/user/" >Sign In</a></div>
             </div>
             <div class="card-body" >
-                <?php echo form_open('/user/signup','id="signupform" class="form-horizontal" role="form"');?>
+                <?php echo form_open('/user/signup','id="signupform" class="form-horizontal" role="form" autocomplete="off" ');?>
 
                     <?php $this->load->view('status') ;?>
 

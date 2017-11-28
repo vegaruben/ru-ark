@@ -219,6 +219,7 @@ class UserService{
         }else{
             $user->firstLogin = FALSE;
             $user->id = $prev->id;
+            $user->roles = $prev->roles;
             $user->username = $user->id;
             if($this->mapper->updateLastLogin($user)){
                 return $user;

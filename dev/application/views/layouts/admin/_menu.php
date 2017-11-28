@@ -1,25 +1,33 @@
-<!-- Static navbar -->
-<nav class="navbar navbar-default navbar-static-top"> 
-	<a class="navbar-brand" href="<?=site_url('admin')?>">
-		<?=img(array ('src' => 'img/logo.png', 'class' => 'img-responsive logo'))?>
-	</a> 
-	<?php if (!$this->ion_auth->logged_in())
-	{
-		echo '<a href="'.site_url('account').'"  class="btn btn-orange pull-right clickable"> My Account</a>';
-	}
-	else {
-		echo '<a href="'.site_url('account').'" class="btn btn-orange pull-right clickable">My Account</a> <a href="'.site_url('auth/logout').'"  class="btn btn-orange pull-right clickable"  style="margin-right:10px;">Log out</a>';
-	}?>
-	<div class="navbar-header">     
-		<!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> --> 
-	</div>
-	<div id="navbar" class="navbar-collapse ">
-		<ul class="nav navbar-nav">
-			<li <?php if ($slug == 'voiceover-talent-finder') echo 'class="first"'?>><a href="<?=site_url('admin/users')?>" class="first">Users</a></li>
-			<li <?php if ($slug == 'voiceover-jobs') echo 'class="first"'?>><a href="<?=site_url('admin/jobs')?>">Jobs</a></li>
-			<li <?php if ($slug == 'voiceover-professionals') echo 'class="first"'?>><a href="<?=site_url('admin/newsletter')?>">Newsletter</a></li>
-			
-		</ul>
-	</div>
-	<!--/.nav-collapse -->   
-</nav>
+<?php
+$menuitems = [
+    'admin' => 'Admin Dashboard',
+    'admin/showcase' => 'Show Case'
+];
+?>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><img src="/assets/img/logo-funnlz.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <?php foreach ($menuitems as $slugx=>$labelx):?>
+                    <li class="<?php if($slug==$slugx) echo 'active';?> nav-item"><a class="nav-link" href="/<?php echo $slugx;?>"><?php echo $labelx;?></a></li>
+                <?php endforeach;?>
+            </ul>
+            <div class="pull-right">
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> Hello <?php echo $this->session->userdata('displayName'); ?> ! <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/admin/profile">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

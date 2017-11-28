@@ -91,5 +91,9 @@ class ProductService
         return $this->mapper->search($ownerId, $paging);
     }
 
+    public  function searchRecentProducts(Paging $paging){
+        return $this->mapper->searchRecentProducts( $paging);
+    }
+
 
 }
