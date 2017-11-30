@@ -99,7 +99,7 @@ class User extends MY_Controller {
     public function logout(){
         $this->unset_user();
         $this->session->set_flashdata('success',"You've been logged out!");
-        redirect('/user/','refresh');
+        redirect('/','refresh');
     }
 
     public function forgot(){

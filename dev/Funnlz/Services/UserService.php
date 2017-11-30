@@ -48,7 +48,13 @@ class UserService{
         //check whether user email already taken
         $prev = $this->mapper->findByEmail($user->email);
         if($prev!=NULL){
-            throw new ServiceException('This e-mail address has been linked to a funnlz login through '.$prev->provider.'.');
+            if(!empty($prev->provider)){
+                throw new ServiceException('This e-mail address has been linked to a funnlz login through '.$prev->provider.'.');
+            }else{
+                $msg = 'This e-mail is being used for an existing funnlz account. <a data-toggle="modal" href="#loginDlg">Login</a>';
+                throw new ServiceException($msg);
+            }
+
         }
 
         $user->isActive = FALSE;

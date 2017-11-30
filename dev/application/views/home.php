@@ -87,7 +87,7 @@
 </div>
 <!--signup modal-->
 <!-- Login Modal -->
-<div aria-hidden="true" aria-labelledby="signupDlgLabel" class="modal fade" id="signupDlg" role="dialog" tabindex="-1">
+<div aria-hidden="true" aria-labelledby="signupDlgLabel" class="modal fade" id="signupDlg" autocomplete="off" role="dialog" tabindex="-1">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -99,26 +99,26 @@
                     <div class="form-group row">
                         <label for="email" class="col-md-3 form-control-label">Email</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="email" placeholder="Email Address" required value="">
+                            <input type="text" class="form-control" autocomplete="off" name="email" placeholder="Email Address" required value="">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="firstname" class="col-md-3 form-control-label">First Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required value="">
+                            <input type="text" class="form-control" autocomplete="off" name="firstName" placeholder="First Name" required value="">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="lastname" class="col-md-3 form-control-label">Last Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required value="">
+                            <input type="text" class="form-control" autocomplete="off" name="lastName" placeholder="Last Name" required value="">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password" class="col-md-3 form-control-label">Password</label>
                         <div class="col-md-9">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required >
+                            <input type="password" class="form-control" autocomplete="off" name="password" placeholder="Password" required >
                         </div>
                     </div>
 

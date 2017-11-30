@@ -156,7 +156,28 @@ class Products extends RegisteredUserController
             echo $e->getMessage();
         }
     }
+    public function clone_product($id){
+        $svc = $this->container['productService'];
+        $product = $svc->findByIdAndOwner($id, $this->get_user_id());
+        if($product==NULL){
+            $this->session->set_flashdata('success','Product not found');
+            return redirect('/products/','refresh');
+        }
+        $this->load->helper('currency');
 
+        $product->id = '';
+        $product->SKU = '';
+
+        $this->data['meta_title'] = 'Clone Product: ' .$product->name;
+        $this->data['meta_desc'] = 'Clone Product';
+        $this->data['slug'] = 'clone-product';
+        $this->data['menu'] = array('url' => $this->data['slug'] , 'display' => 'Clone Product');
+
+        $this->data['v'] = 'products/clone';
+        $this->data['jsfiles'] = array('dropzone.js','product.js');
+        $this->data['product'] = $product;
+        $this->load->view('template_registered',  $this->data);
+    }
     /*ajax*/
     public function search_products(){
         $form = new DataTablesPaging();

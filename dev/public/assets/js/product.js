@@ -18,6 +18,7 @@ $(document).ready(function(){
                         "mRender": function ( data, type, row ) {
                             //console.log(row);
                             var html = '<a href="/products/entry/'+row.id+'" class="btn btn-warning">Edit</a>&nbsp;'+
+                                '<a href="/products/clone-product/'+row.id+'" class="btn btn-success">Clone</a>&nbsp;'+
                                 '<button type="submit" class="btn btn-danger" data-id="'+row.id+'">Delete</button>';
                             return html;
                         },

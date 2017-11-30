@@ -1,5 +1,8 @@
 $(document).ready(function(){
 	 if($('.home').length !== 0){
+         $('#loginDlg').on('shown.bs.modal', function () {
+             $('#signupDlg').modal('hide')
+         })
 		//signin
 		var frm = $('#loginform');
 		frm.submit(function (e) {

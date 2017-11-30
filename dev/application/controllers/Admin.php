@@ -46,7 +46,8 @@ class Admin extends AdminUserController
             $ret = $svc->searchRecentProducts($paging);
             if($ret){
                 if($ret->totalrecords>0){
-                    $this->data['featured'] = $ret->data[0];
+                    $this->data['featured'] = $ret->data[1];
+                    array_shift($ret->data);
                     $this->data['products'] = $ret->data;
                 }else{
                     $this->data['featured'] = NULL;
