@@ -35,7 +35,7 @@ class Admin extends AdminUserController
         $this->load->view('template_admin', $this->data);
     }
     public function showcase(){
-        //$this->data['jsfiles'] = ['dashboard.js'];
+        $this->data['jsfiles'] = ['blur.js', 'admin/showcase.js'];
         $this->data['cssfiles'] = ['echad.css'];
 
         $featured = [];

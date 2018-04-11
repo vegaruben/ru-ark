@@ -10,6 +10,9 @@ function getYoutubeID($url){
     return $matches[1];
 }
 function getBackgroundImage($product){
+	return '/media/'.$product->ownerId.'/products/'.$product->picture;
+	
+	
     if(!empty($product->YouTubeLink)){
         $ret = 'https://img.youtube.com/vi/'.getYoutubeID($product->YouTubeLink).'/0.jpg';
         return $ret;

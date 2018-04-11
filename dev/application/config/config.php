@@ -44,7 +44,7 @@ spl_autoload_register(function ($className) {
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://funnlz.dev/';
+$config['base_url'] = 'http://funnlz.test/';
 
 /*
 |--------------------------------------------------------------------------
